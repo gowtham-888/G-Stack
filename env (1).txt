@@ -1,6 +1,0 @@
-MONGO_URL=mongodb://localhost:27017
-DB_NAME=resqnet
-NEXT_PUBLIC_BASE_URL=https://disaster-intel-7.preview.emergentagent.com
-CORS_ORIGINS=*
-GEMINI_API_KEY=AIzaSyBCWnXsLqnL3ydUVPQdZHA7IEV7GgUwa00
-NEXT_PUBLIC_OWM_KEY=dad0e01b8ea05cd017b6911523c16ed1
