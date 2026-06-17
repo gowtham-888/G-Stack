@@ -1,0 +1,125 @@
+#5
+d={}
+for w in open(input("File: ")).read().split():
+    d[w]=d.get(w,0)+1
+
+for w,c in sorted(d.items(),key=lambda x:x[1],reverse=True)[:10]:
+    print(w,c)
+
+
+
+
+#6
+
+a=input("Enter input filename: ")
+b=input("Enter output filename: ")
+
+l=[]
+for x in open(a).readlines():
+    l.append(x.strip())
+
+l.sort()
+open(b,"w").write("\n".join(l))
+
+print("Sorted content written to",b,"successfully.")
+print("Total lines sorted:",len(l))
+print("Sorted Lines:")
+for x in l:
+    print(x)
+
+
+#7
+import os, zipfile
+
+f=input("Enter folder name: ")
+z=zipfile.ZipFile(f+".zip","w")
+
+for a,b,c in os.walk(f):
+    for x in c:
+        z.write(os.path.join(a,x))
+
+z.close()
+print("Backup created")
+
+
+
+#8
+def DivExp(a,b):
+    assert a>0,f"a must be > 0, but got {a}"
+    if b==0: raise ZeroDivisionError("b cannot be zero!")
+    return a/b
+
+try:
+    a=float(input("Enter value of a: "))
+    b=float(input("Enter value of b: "))
+    print(f"Result: {a} / {b} = {DivExp(a,b):.4f}")
+
+except Exception as e:
+    print(type(e).__name__+":",e)
+
+
+
+
+#9
+class Complex:
+    def __init__(self,r,i):
+        self.r,self.i=r,i
+
+def add(a,b):
+    return Complex(a.r+b.r,a.i+b.i)
+
+n=int(input("How many complex numbers (N>=2)? "))
+
+s=Complex(0,0)
+
+for x in range(1,n+1):
+    print(f"Enter C{x}:")
+    r=float(input("Enter real part: "))
+    i=float(input("Enter imag part: "))
+    s=add(s,Complex(r,i))
+
+print(f"Sum of {n} complex numbers = ({s.r} + {s.i}i)")
+
+
+
+
+#10
+class Student:
+    def __init__(self):
+        self.name=input("Enter Name: ")
+        self.usn=input("Enter USN: ")
+        self.m=[]
+
+    def getMarks(self):
+        for i in range(1,4):
+            self.m.append(float(input(f"Enter Subject {i}: ")))
+
+    def calculate(self):
+        self.total=sum(self.m)
+        self.per=self.total/3
+
+        if self.per>=90:
+            self.grade="A+"
+        elif self.per>=80:
+            self.grade="A"
+        elif self.per>=70:
+            self.grade="B"
+        elif self.per>=60:
+            self.grade="C"
+        else:
+            self.grade="F"
+
+    def display(self):
+        print("\nName:",self.name)
+        print("USN:",self.usn)
+        print("Subject 1:",self.m[0])
+        print("Subject 2:",self.m[1])
+        print("Subject 3:",self.m[2])
+        print("Total Marks:",self.total)
+        print("Percentage:",self.per)
+        print("Grade:",self.grade)
+
+s=Student()
+s.getMarks()
+s.calculate()
+s.display()
